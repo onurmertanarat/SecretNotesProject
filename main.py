@@ -31,7 +31,7 @@ def save_and_encrypt_notes():
         message_encrypted = encode(master_secret, message)
         try:
             with open("mysecret.txt", "a") as data_file:
-            data_file.write(f"\n{title}\n{message_encrypted}")
+                data_file.write(f"\n{title}\n{message_encrypted}")
         except FileNotFoundError:
             with open("mysecret.txt", "w") as data_file:
                 data_file.write(f"\n{title}\n{message_encrypted}")
@@ -44,7 +44,7 @@ def decrypt_notes():
     message_encrypted = input_text.get("1.0", END)
     master_secret = master_secret_input.get()
 
-    if len(master_encrypted) == 0 or len(master_secret) == 0:
+    if len(message_encrypted) == 0 or len(master_secret) == 0:
         messagebox.showinfo(title="Error!", message="Please enter all info.")
     else:
         try:
@@ -60,10 +60,10 @@ window = Tk()
 window.title("Secret Notes")
 window.config(padx=30, pady= 30)
 
-
-photo = PhotoImage(file= "indir.jpg")
-photo_button = Button(image=photo)
-photo_button.pack()
+# missing image/image folder
+# photo = PhotoImage(file= "indir.jpg")
+# photo_button = Button(image=photo)
+# photo_button.pack()
 
 
 title_info_label = Label(text="Enter your title", font=FONT)
@@ -76,13 +76,15 @@ input_info_label = Label(text="Enter your secret", font=FONT)
 input_info_label.pack()
 
 input_text = Text()
-input_text.pack(width=50, height=20)
+input_text.config(width=50, height=20)
+# input_text.pack(width=50, height=20)
+input_text.pack(side="top")
 
 
 master_secret_label = Label(text="Enter master key",font=FONT)
 master_secret_label.pack()
 
-master_secret_input = Entery(width=30)
+master_secret_input = Entry(width=30)
 master_secret_input.pack()
 
 
